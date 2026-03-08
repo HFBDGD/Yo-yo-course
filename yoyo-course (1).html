@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Basic Throws to Competition Ready — Yo-Yo Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f4f1eb;
+    --cream: #f4f1eb;
+    --yellow: #f5c842;
+    --orange: #e8622a;
+    --red: #c0392b;
+    --gray: #2a2a2a;
+    --mid: #555;
+    --light: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 3rem 3rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #222;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 60% at 80% 20%, rgba(245,200,66,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 20% 80%, rgba(232,98,42,0.06) 0%, transparent 50%),
+      var(--black);
+  }
+
+  .hero-yoyo {
+    position: absolute;
+    top: 6rem;
+    right: 4rem;
+    width: 220px;
+    height: 220px;
+    opacity: 0.06;
+    animation: spin 8s linear infinite;
+  }
+
+  .hero-yoyo svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .course-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 span {
+    color: var(--yellow);
+    display: block;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .meta-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    border: 1px solid #333;
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+  }
+
+  .meta-pill.highlight {
+    border-color: var(--yellow);
+    color: var(--yellow);
+  }
+
+  .progress-bar-wrap {
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .progress-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-track {
+    height: 3px;
+    background: #222;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--yellow), var(--orange));
+    width: 28.5%;
+    transition: width 1.5s ease;
+  }
+
+  /* ── NAV ── */
+  .toc {
+    padding: 2rem 3rem;
+    border-bottom: 1px solid #1a1a1a;
+    background: #0d0d0d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .toc-inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .toc-inner::-webkit-scrollbar { display: none; }
+
+  .toc-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding: 0.5rem 1.2rem;
+    border-right: 1px solid #222;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+
+  .toc-item:first-child { padding-left: 0; }
+  .toc-item:hover { color: var(--cream); }
+  .toc-item.active { color: var(--yellow); }
+
+  /* ── MODULES ── */
+  .module {
+    border-bottom: 1px solid #1a1a1a;
+    padding: 4rem 3rem;
+  }
+
+  .module:hover { background: #0c0c0c; }
+
+  .module-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .module-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: #1e1e1e;
+    min-width: 80px;
+    position: relative;
+    top: -0.3rem;
+  }
+
+  .module-number.active-num { color: var(--yellow); opacity: 0.4; }
+
+  .module-title-block {}
+
+  .module-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.4rem;
+  }
+
+  .module-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+
+  .module-subtitle {
+    font-size: 0.9rem;
+    color: var(--light);
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 3rem;
+    padding-left: 0;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .icon-goal { background: rgba(245,200,66,0.12); color: var(--yellow); border: 1px solid rgba(245,200,66,0.3); }
+  .icon-explain { background: rgba(232,98,42,0.12); color: var(--orange); border: 1px solid rgba(232,98,42,0.3); }
+  .icon-video { background: rgba(192,57,43,0.15); color: #e74c3c; border: 1px solid rgba(192,57,43,0.3); }
+  .icon-steps { background: rgba(100,180,100,0.12); color: #6dbb6d; border: 1px solid rgba(100,180,100,0.3); }
+  .icon-ideas { background: rgba(100,150,220,0.12); color: #7faadd; border: 1px solid rgba(100,150,220,0.3); }
+  .icon-check { background: rgba(180,100,220,0.12); color: #c07be8; border: 1px solid rgba(180,100,220,0.3); }
+
+  .section-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* Goal block */
+  .goal-block {
+    border-left: 2px solid var(--yellow);
+    padding: 1rem 1.5rem;
+    background: rgba(245,200,66,0.03);
+  }
+
+  .goal-block p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--cream);
+    font-weight: 300;
+  }
+
+  /* Explain block */
+  .explain-block {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    padding: 1.5rem 2rem;
+  }
+
+  .explain-block p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #bbb;
+    margin-bottom: 1rem;
+  }
+
+  .explain-block p:last-child { margin-bottom: 0; }
+
+  .explain-block strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* Info table */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: #1e1e1e;
+    border: 1px solid #1e1e1e;
+    margin-top: 1.2rem;
+  }
+
+  .info-cell {
+    background: #0f0f0f;
+    padding: 1rem 1.2rem;
+  }
+
+  .info-cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 0.3rem;
+  }
+
+  .info-cell-value {
+    font-size: 0.88rem;
+    color: var(--cream);
+    line-height: 1.4;
+  }
+
+  /* Video block */
+  .video-block {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    overflow: hidden;
+  }
+
+  .video-thumb {
+    position: relative;
+    padding-top: 56.25%;
+    background: #111;
+    overflow: hidden;
+  }
+
+  .video-thumb iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-link-block {
+    display: block;
+    text-decoration: none;
+  }
+
+  .video-thumb-img {
+    position: relative;
+    padding-top: 56.25%;
+    background-size: cover;
+    background-position: center;
+    background-color: #111;
+    overflow: hidden;
+    transition: filter 0.2s;
+  }
+
+  .video-link-block:hover .video-thumb-img {
+    filter: brightness(1.15);
+  }
+
+  .video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    transition: transform 0.2s;
+  }
+
+  .video-link-block:hover .video-play-btn {
+    transform: translate(-50%, -60%) scale(1.1);
+  }
+
+  .video-open-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+
+  .video-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .video-source:hover { text-decoration: underline; }
+
+  .video-meta {
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .video-title {
+    font-size: 0.85rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .video-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Steps */
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #1e1e1e;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #1a1a1a;
+    transition: background 0.2s;
+  }
+
+  .step:last-child { border-bottom: none; }
+  .step:hover { background: #111; }
+
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--yellow);
+    letter-spacing: 0.05em;
+    min-width: 28px;
+    padding-top: 0.15rem;
+  }
+
+  .step-content {}
+
+  .step-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  .step-tip {
+    margin-top: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+  }
+
+  /* Ideas */
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: #1a1a1a;
+    border: 1px solid #1a1a1a;
+  }
+
+  .idea-card {
+    background: #0d0d0d;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .idea-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 0.5rem;
+  }
+
+  .idea-card p {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: #aaa;
+  }
+
+  /* Checkpoint */
+  .checkpoint {
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    padding: 2rem;
+  }
+
+  .checkpoint-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkpoint-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: rgba(192,123,232,0.12);
+    border: 1px solid rgba(192,123,232,0.3);
+    color: #c07be8;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .checkpoint-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+  }
+
+  .questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .question-item {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    overflow: hidden;
+  }
+
+  .question-q {
+    padding: 1rem 1.2rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--cream);
+    border-bottom: 1px solid #1a1a1a;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .question-q:hover { background: #161616; }
+
+  .q-toggle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--light);
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .question-a {
+    padding: 1rem 1.2rem;
+    font-size: 0.83rem;
+    line-height: 1.6;
+    color: #6dbb6d;
+    display: none;
+    background: rgba(109,187,109,0.03);
+    border-top: 1px solid rgba(109,187,109,0.1);
+  }
+
+  .question-a.revealed { display: block; }
+
+  /* Gear list */
+  .gear-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #1a1a1a;
+    border: 1px solid #1a1a1a;
+  }
+
+  .gear-item {
+    background: #0d0d0d;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .gear-status {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #333;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .gear-status.checked {
+    background: var(--yellow);
+    border-color: var(--yellow);
+  }
+
+  .gear-status.checked::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: var(--black);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+
+  .gear-info {}
+
+  .gear-name {
+    font-size: 0.9rem;
+    color: var(--cream);
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+
+  .gear-desc {
+    font-size: 0.8rem;
+    color: var(--light);
+    line-height: 1.5;
+  }
+
+  .gear-rec {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--yellow);
+    margin-top: 0.3rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 3rem;
+    border-top: 1px solid #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 1rem;
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  .next-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--yellow);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .next-btn:hover { background: #ffd740; }
+
+  .coming-soon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border: 1px solid #222;
+    padding: 0.8rem 1.5rem;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 2.5rem 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero, .module, .toc, .footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .module-header { flex-direction: column; gap: 0.5rem; }
+    .module-number { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-yoyo">
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" stroke="white" stroke-width="6"/>
+      <circle cx="100" cy="100" r="55" stroke="white" stroke-width="4"/>
+      <circle cx="100" cy="100" r="10" fill="white"/>
+      <line x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="2" opacity="0.3"/>
+      <line x1="10" y1="100" x2="190" y2="100" stroke="white" stroke-width="2" opacity="0.3"/>
+      <line x1="36" y1="36" x2="164" y2="164" stroke="white" stroke-width="2" opacity="0.15"/>
+      <line x1="164" y1="36" x2="36" y2="164" stroke="white" stroke-width="2" opacity="0.15"/>
+    </svg>
+  </div>
+
+  <div class="course-label">1A String Tricks · Beginner to Competition Ready</div>
+  <h1>FROM BASIC<span>THROWS</span></h1>
+  <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,3vw,2rem);letter-spacing:0.15em;color:var(--mid);margin-top:-0.5rem;margin-bottom:1.5rem;position:relative;">TO COMPETITION STAGE</h1>
+
+  <div class="hero-meta">
+    <span class="meta-pill">Learner: You</span>
+    <span class="meta-pill">Level: Know Basic Throws</span>
+    <span class="meta-pill highlight">Goal: Competition Ladder</span>
+    <span class="meta-pill">Style: 1A — String Tricks</span>
+    <span class="meta-pill">Modules: 7 total</span>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-label">Course Progress — All 7 Modules Complete</div>
+    <div class="progress-track"><div class="progress-fill"></div></div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#mod0" class="toc-item active">00 · Gear & Setup</a>
+    <a href="#mod1" class="toc-item">01 · Throw Mechanics</a>
+    <a href="#mod2" class="toc-item">02 · Sleeper Control</a>
+    <a href="#mod3" class="toc-item">03 · Picture Tricks</a>
+    <a href="#mod4" class="toc-item">04 · The Bind</a>
+    <a href="#mod5" class="toc-item">05 · Sport Ladder</a>
+    <a href="#mod6" class="toc-item">06 · Comp Prep</a>
+  </div>
+</nav>
+
+<!-- ─────────────────────────────────────── -->
+<!-- MODULE 0 — GEAR & SETUP               -->
+<!-- ─────────────────────────────────────── -->
+<section class="module" id="mod0">
+  <div class="module-header">
+    <div class="module-number active-num">00</div>
+    <div class="module-title-block">
+      <div class="module-tag">Foundation</div>
+      <div class="module-title">Gear & Setup</div>
+      <div class="module-subtitle">Before your first serious throw, you need the right tool. Most people stall because they're fighting gear that works against them.</div>
+    </div>
+  </div>
+
+  <!-- GOAL -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-goal">◎</div>
+      <div class="section-name">Learning Goal</div>
+    </div>
+    <div class="goal-block">
+      <p>By the end of this module, you will have the correct yo-yo for your skill pathway, understand the difference between responsive and unresponsive play, and have your string set to the right length. You will be ready to practise techniques — not fight your equipment.</p>
+    </div>
+  </div>
+
+  <!-- EXPLAIN -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-explain">≡</div>
+      <div class="section-name">Explain — The Theory</div>
+    </div>
+    <div class="explain-block">
+      <p>Yo-yos fall into two categories that define what tricks are possible. A <strong>responsive yo-yo</strong> has a narrow bearing and returns to your hand with a simple tug — ideal for learning basic throws and classic tricks. An <strong>unresponsive yo-yo</strong> has a wider bearing and will not return until you perform a trick called a Bind, which allows far more complex string manipulation without the yo-yo snapping back mid-trick.</p>
+      <p>Your competition goal — the Sport Trick Ladder — requires unresponsive play. But since you already know basic throws, you are at the exact right point to start on a responsive yo-yo, solidify your mechanics, and transition to unresponsive once your Sleeper is consistent. Skipping straight to unresponsive without a clean throw is one of the most common reasons beginners plateau.</p>
+      <p><strong>String length</strong> matters more than most beginners realise. The rule of thumb: standing upright, the yo-yo at the end of an unwound string should reach your belly button. Too long and you'll constantly compensate your throw height; too short and tricks become cramped.</p>
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-cell-label">Recommended Starter</div>
+          <div class="info-cell-value">YoYoFactory Arrow (~$15)<br>Comes with both bearings</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Budget Option</div>
+          <div class="info-cell-value">Duncan Butterfly XT (~$8)<br>Responsive only</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">String Type</div>
+          <div class="info-cell-value">Polyester string (not cotton)<br>Replace every ~2 hours of play</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">String Length</div>
+          <div class="info-cell-value">Navel height when standing<br>Trim if longer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-steps">✓</div>
+      <div class="section-name">Setup Checklist</div>
+    </div>
+    <div class="gear-list" id="gearList">
+      <div class="gear-item">
+        <div class="gear-status" onclick="toggleGear(this)"></div>
+        <div class="gear-info">
+          <div class="gear-name">Responsive yo-yo with ball bearing</div>
+          <div class="gear-desc">Must be ball-bearing type, not fixed-axle or clutch. If you have a YoYoFactory Arrow, use the narrow bearing (pre-installed).</div>
+          <div class="gear-rec">→ YoYoFactory Arrow / Duncan Butterfly XT / Any ball-bearing responsive</div>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-status" onclick="toggleGear(this)"></div>
+        <div class="gear-info">
+          <div class="gear-name">Polyester string installed correctly</div>
+          <div class="gear-desc">String goes over the top of the yo-yo when palm faces up. If it goes underneath, the yo-yo will spin out unpredictably on every throw.</div>
+          <div class="gear-rec">→ Flip the yo-yo if your throws keep tilting sideways</div>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-status" onclick="toggleGear(this)"></div>
+        <div class="gear-info">
+          <div class="gear-name">String trimmed to belly-button height</div>
+          <div class="gear-desc">Hold the yo-yo at full string length. If it passes your navel, cut and re-tie. All tricks in this course are calibrated to this length.</div>
+          <div class="gear-rec">→ Use the end knot method to re-tie after trimming</div>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-status" onclick="toggleGear(this)"></div>
+        <div class="gear-info">
+          <div class="gear-name">Slip knot on middle finger (between 2nd & 3rd knuckle)</div>
+          <div class="gear-desc">This position gives optimal throw leverage. Too close to the tip and you lose power; too far back and your catch control suffers.</div>
+          <div class="gear-rec">→ Tighten the slip knot snugly — it should not slide during a hard throw</div>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-status" onclick="toggleGear(this)"></div>
+        <div class="gear-info">
+          <div class="gear-name">Clear practice space (min. 1.5m radius, smooth floor)</div>
+          <div class="gear-desc">Walk the Dog and floor-contact tricks require this. Carpet kills spin time. Polished floors and short throws are safer for learning.</div>
+          <div class="gear-rec">→ Kitchen or garage floor is ideal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDEAS -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-ideas">⬡</div>
+      <div class="section-name">Ideas & Context</div>
+    </div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-card-label">Why not start unresponsive?</div>
+        <p>Unresponsive yo-yos require a Bind to return. Learning to Bind before your throw is clean means two uncertain variables at once. Clean throw first — unresponsive later.</p>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-label">What is a "vibe"?</div>
+        <p>A vibrating or wobbling yo-yo is called "vibey." Some vibe is normal in cheaper yo-yos. If it wobbles drastically, check the string — a tight or twisted string causes most vibe in beginner yo-yos.</p>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-label">String tension matters</div>
+        <p>Over time, string twists up and affects trick performance. To fix: let the yo-yo hang free, release the tension, then rewind. Swap string every 2 hours of play.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKPOINT -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-check">?</div>
+      <div class="section-name">Checkpoint — Test Yourself</div>
+    </div>
+    <div class="checkpoint">
+      <div class="checkpoint-header">
+        <span class="checkpoint-badge">Module 00</span>
+        <span class="checkpoint-title">Tap to reveal answers</span>
+      </div>
+      <div class="questions-list">
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q1 — What is the difference between a responsive and unresponsive yo-yo?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">A responsive yo-yo returns with a simple tug, using a narrow bearing. An unresponsive yo-yo has a wider bearing and requires a Bind trick to return — allowing more complex string combinations without accidental snap-back.</div>
+        </div>
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q2 — Where should the string sit on a yo-yo when your palm faces up?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">The string should go over the top of the yo-yo. If it passes underneath, the yo-yo will tilt and spin out on the throw. Flip the yo-yo over to correct this.</div>
+        </div>
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q3 — How long should your yo-yo string be?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">Standing upright, the yo-yo at the end of a fully unwound string should reach your navel (belly button). This is the standard length for 1A string tricks and allows consistent throw height without compensating your arm position.</div>
+        </div>
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q4 — Why should you start on a responsive yo-yo before moving to unresponsive?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">Starting on responsive allows you to build a clean, powerful throw without also learning the Bind. Attempting unresponsive too early means practising two uncertain skills simultaneously, which significantly slows progress and builds bad throw habits.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── -->
+<!-- MODULE 1 — THROW MECHANICS            -->
+<!-- ─────────────────────────────────────── -->
+<section class="module" id="mod1">
+  <div class="module-header">
+    <div class="module-number active-num">01</div>
+    <div class="module-title-block">
+      <div class="module-tag">Core Skill</div>
+      <div class="module-title">Throw Mechanics</div>
+      <div class="module-subtitle">Everything in yo-yo flows from your throw. A clean, powerful, straight throw is the single most important technical skill in this entire course.</div>
+    </div>
+  </div>
+
+  <!-- GOAL -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-goal">◎</div>
+      <div class="section-name">Learning Goal</div>
+    </div>
+    <div class="goal-block">
+      <p>By the end of this module, you will be able to throw a consistent, straight Sleeper that spins for at least 5 seconds and returns cleanly to your hand. You will also understand the Breakaway throw — the foundation of all competition-level 1A tricks.</p>
+    </div>
+  </div>
+
+  <!-- EXPLAIN -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-explain">≡</div>
+      <div class="section-name">Explain — The Theory</div>
+    </div>
+    <div class="explain-block">
+      <p>The <strong>Sleeper</strong> is a throw that sends the yo-yo straight down and keeps it spinning at the end of the string — rather than immediately returning. This spinning state at the bottom is called "sleeping." It is the foundation for virtually every 1A trick: Rock the Baby, Trapeze, the Sport Ladder tricks — all require the yo-yo to be sleeping long enough to execute the moves.</p>
+      <p>The key insight most beginners miss: <strong>the yo-yo's spin time is determined almost entirely by the power and straightness of your throw</strong> — not by the yo-yo itself. A cheap yo-yo thrown perfectly will outlast an expensive yo-yo thrown lazily. Your goal in this module is to build a throw that is both powerful (fast snap of the wrist) and straight (zero tilt).</p>
+      <p>The <strong>Breakaway</strong> is a sideways throw — the yo-yo swings out to the side and across the front of your body rather than straight down. It feels unnatural at first, but the majority of competition 1A tricks — including the Trapeze and Sport Ladder moves — begin from a Breakaway, not a Sleeper. Both throws need to be in your toolkit.</p>
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-cell-label">Sleeper target (beginner)</div>
+          <div class="info-cell-value">5+ seconds spin time<br>Return on first tug</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Sleeper target (trick-ready)</div>
+          <div class="info-cell-value">15–20+ seconds<br>Achieved with consistent practice</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Breakaway direction</div>
+          <div class="info-cell-value">Right-handed: arm goes left<br>Yo-yo swings right to left</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Most common mistake</div>
+          <div class="info-cell-value">Turning the wrist over too early<br>Kills spin before it starts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO 1 -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-video">▶</div>
+      <div class="section-name">Video Demo — The Sleeper</div>
+    </div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=bFiQ3wuiIsU" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/bFiQ3wuiIsU/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Basic Throw & Sleeper Tutorial ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">Basic Throw & Sleeper — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=bFiQ3wuiIsU" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- STEPS — SLEEPER -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-steps">✓</div>
+      <div class="section-name">Step-by-Step — The Sleeper</div>
+    </div>
+    <div class="steps-list">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Check string orientation</div>
+          <div class="step-desc">Hold the yo-yo with your palm facing up. The string should come off the top of the yo-yo. If it comes from underneath, flip the yo-yo over. This single check fixes most beginner tilt problems before they start.</div>
+          <div class="step-tip">→ Wrong orientation = yo-yo spins out sideways every time</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Make a muscle — the starting position</div>
+          <div class="step-desc">Raise your throw arm as if flexing a bicep. Elbow up, yo-yo held beside your ear. This coiled position is where all the throw power comes from — don't skip this or you'll get a weak, short-lived spin.</div>
+          <div class="step-tip">→ The higher the elbow, the more power you can generate</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Snap straight down — don't follow through</div>
+          <div class="step-desc">Extend your forearm downward with a sharp wrist snap. Release the yo-yo at the bottom of this motion. Do not swing your full arm — the power comes from the snap, not the swing. Immediately hold your arm still after releasing.</div>
+          <div class="step-tip">→ Freeze your arm once the yo-yo leaves. Movement causes tilt.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Let it sleep — palm stays up</div>
+          <div class="step-desc">After the throw, keep your palm facing up. This is the difference between the Sleeper and the Gravity Pull — you simply don't tug. The yo-yo will spin at the bottom. Count the seconds. Aim for 5+ before attempting anything else.</div>
+          <div class="step-tip">→ Palm up = it sleeps. Palm down tug = it returns.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Return cleanly — flip and tug gently</div>
+          <div class="step-desc">To return the yo-yo, rotate your palm to face down and give a light upward tug. You don't need to yank — a gentle tug is enough if the spin is strong. Catch the yo-yo lightly in your palm; don't grab at it.</div>
+          <div class="step-tip">→ Hard yanking on a weak spin just causes knots</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO 2 — Breakaway -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-video">▶</div>
+      <div class="section-name">Video Demo — The Breakaway</div>
+    </div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=bxsKbULJeA0" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/bxsKbULJeA0/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: The Breakaway Tutorial ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">The Breakaway — SkillAddicts.com</div>
+        <a href="https://www.youtube.com/watch?v=bxsKbULJeA0" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- STEPS — BREAKAWAY -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-steps">✓</div>
+      <div class="section-name">Step-by-Step — The Breakaway</div>
+    </div>
+    <div class="steps-list">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Start position — arm out to your dominant side</div>
+          <div class="step-desc">Unlike the Sleeper where you start with elbow up, the Breakaway begins with your arm extended out to your dominant side (right if right-handed), yo-yo at about shoulder height. Think of it as preparing to throw sideways across your body.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Swing across your body</div>
+          <div class="step-desc">Throw the yo-yo out to your non-dominant side in a smooth arc across the front of your body. The yo-yo should travel in a straight horizontal line, not angled up or down. Imagine guiding it along a rail at shoulder height.</div>
+          <div class="step-tip">→ Keep the plane of the throw perfectly vertical — this is what stops tilting</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Let it hang, then return</div>
+          <div class="step-desc">Once the yo-yo reaches the far side of the arc and begins to hang, tug to return it underneath your catch hand. Catch underhand. The motion should feel like a pendulum arc. This is the exact position all Trapeze and ladder tricks begin from.</div>
+          <div class="step-tip">→ Tug when the yo-yo reaches shoulder height on the other side</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDEAS -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-ideas">⬡</div>
+      <div class="section-name">Ideas & Connections</div>
+    </div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-card-label">Why the Breakaway matters more</div>
+        <p>Over 90% of 1A competition tricks — including every trick on the Sport Ladder above level 3 — begin with a Breakaway, not a Sleeper. The Sleeper is foundational; the Breakaway is operational.</p>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-label">The throw is your "battery"</div>
+        <p>Every trick you do while the yo-yo is sleeping costs spin time. The more complex the trick, the more spin you need. Judges at competitions see weak throws immediately — the yo-yo dies before the trick is complete.</p>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-label">Practise with a dead yo-yo</div>
+        <p>For the Sleeper and Breakaway, run through the arm motions with the yo-yo not spinning. Muscle memory for the motion is built separately from the outcome. This technique is used by competitive players for new tricks.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKPOINT -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-icon icon-check">?</div>
+      <div class="section-name">Checkpoint — Test Yourself</div>
+    </div>
+    <div class="checkpoint">
+      <div class="checkpoint-header">
+        <span class="checkpoint-badge">Module 01</span>
+        <span class="checkpoint-title">Tap to reveal answers</span>
+      </div>
+      <div class="questions-list">
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q1 — What is the "sleeping" state in yo-yo?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">Sleeping means the yo-yo is spinning at the end of the string without returning to the hand. This state is the foundation for virtually every 1A trick — all string manipulation happens while the yo-yo is sleeping.</div>
+        </div>
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q2 — What is the most common mistake that causes a yo-yo to tilt on the throw?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">Turning the wrist over too early (before the yo-yo is fully released) is the most common cause of tilt. Moving your arm after releasing also causes tilt. The arm should freeze at the release point. String orientation (should go over the top of the yo-yo) also affects this.</div>
+        </div>
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q3 — Why is the Breakaway more important than the Sleeper for competition play?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">The Breakaway is the starting throw for the majority of 1A tricks, including Trapeze, all Ladder tricks above level 3, and most freestyle combinations. The Sleeper is used primarily for front-facing tricks like Rock the Baby. Competition judges evaluate tricks from the Breakaway position.</div>
+        </div>
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Q4 — What is the minimum Sleeper spin time you should achieve before moving to Module 2?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">Aim for a consistent 5+ second Sleeper with a clean return before moving to Module 2. Ideally 8–10 seconds. If your spin time is shorter than 5 seconds, the tricks in Module 2 and beyond will be very difficult to execute before the yo-yo dies.</div>
+        </div>
+        <div class="question-item">
+          <div class="question-q" onclick="toggleQ(this)">
+            <span>Practical check — Can you complete this before moving on?</span>
+            <span class="q-toggle">Reveal ↓</span>
+          </div>
+          <div class="question-a">
+            ✅ Throw a Sleeper that lasts 5+ seconds, 3 times in a row<br>
+            ✅ Return the yo-yo cleanly on the first tug each time<br>
+            ✅ Throw a Breakaway that swings in a straight horizontal arc<br>
+            ✅ No consistent tilt on your Sleeper throw<br><br>
+            If you can't do these yet — that's fine. That's exactly what this module is for. Drill the throw. Everything else is built on this.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── -->
+<!-- MODULE 2 — SLEEPER CONTROL            -->
+<!-- ─────────────────────────────────────── -->
+<section class="module" id="mod2">
+  <div class="module-header">
+    <div class="module-number active-num">02</div>
+    <div class="module-title-block">
+      <div class="module-tag">Core Skill</div>
+      <div class="module-title">Sleeper Control</div>
+      <div class="module-subtitle">A yo-yo that tilts, wobbles, or dies too fast isn't a gear problem — it's a technique problem. This module fixes the three issues that kill most beginners' progress.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-goal">◎</div><div class="section-name">Learning Goal</div></div>
+    <div class="goal-block">
+      <p>By the end of this module, you will be able to correct tilt in a sleeping yo-yo, manage string tension, and consistently achieve 15+ second Sleepers. These are the prerequisites for all picture tricks and Sport Ladder entries.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-explain">≡</div><div class="section-name">Explain — The Theory</div></div>
+    <div class="explain-block">
+      <p>Three things kill Sleeper quality: <strong>tilt</strong> (yo-yo leans sideways), <strong>string tension</strong> (twisted string creates friction), and <strong>weak throw power</strong>. Each has a specific fix.</p>
+      <p><strong>Tilt correction:</strong> A tilting yo-yo can be nudged back to vertical without catching it. If the yo-yo tilts toward you, gently move your throw hand in the same direction as the tilt to compensate. This takes feel — practise it deliberately rather than waiting for tricks to fail.</p>
+      <p><strong>String tension:</strong> Over time, string twists tighter or looser as you throw and return. Too tight = the yo-yo snaps back unpredictably. Too loose = sloppy trick landings. The fix is the <strong>UFO</strong> — a sideways throw that deliberately uses string friction to adjust tension. Throw left to loosen; throw right to tighten (for right-handed players).</p>
+      <div class="info-grid">
+        <div class="info-cell"><div class="info-cell-label">Target spin time</div><div class="info-cell-value">15–20 seconds consistent<br>before moving to Module 3</div></div>
+        <div class="info-cell"><div class="info-cell-label">Tilt fix method</div><div class="info-cell-value">Nudge hand in tilt direction<br>Don't over-correct</div></div>
+        <div class="info-cell"><div class="info-cell-label">String tension check</div><div class="info-cell-value">Let yo-yo hang free<br>Should hang still, not spin</div></div>
+        <div class="info-cell"><div class="info-cell-label">String replacement</div><div class="info-cell-value">Every ~2 hours of active play<br>Old string = dead spin</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — String Tension & UFO</div></div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=0-W1gH-XYUI" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/0-W1gH-XYUI/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: String Tension Introduction ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">String Tension & UFO — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=0-W1gH-XYUI" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-steps">✓</div><div class="section-name">Step-by-Step — Diagnosing & Fixing Tilt</div></div>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">01</div><div class="step-content"><div class="step-title">Throw and observe before touching</div><div class="step-desc">After your Sleeper throw, resist the urge to immediately fix anything. Watch the yo-yo for 2 seconds. Is it straight? Tilting left? Tilting right? Diagnosing correctly before acting prevents overcorrection.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-content"><div class="step-title">Nudge — don't grab</div><div class="step-desc">Move your throw hand slightly in the same direction the yo-yo is tilting. A 1–2cm shift is often enough. The string will apply gentle corrective pressure. If you move too far, you'll cause tilt in the other direction.</div><div class="step-tip">→ Think of it as steering, not catching</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-content"><div class="step-title">Check string tension before every practice session</div><div class="step-desc">Let the yo-yo hang free at the bottom of the string. If it starts slowly spinning on its own, your tension is off. A neutral string hangs completely still. Fix it with the UFO before your session, not mid-trick.</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-content"><div class="step-title">The UFO — sideways intentional tilt throw</div><div class="step-desc">Throw the yo-yo to the side so it spins at an angle, parallel to the floor. The spinning yo-yo against the string changes tension. Right-hand throw to the right tightens; to the left loosens. Let it hang for 2–3 seconds then tug back.</div><div class="step-tip">→ This is also a Sport Ladder trick — you're practising two things at once</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-ideas">⬡</div><div class="section-name">Ideas & Connections</div></div>
+    <div class="ideas-grid">
+      <div class="idea-card"><div class="idea-card-label">Spin time is your budget</div><p>Think of spin time as a budget for tricks. Every string movement spends some of it. A 20-second Sleeper is a big budget — enough for Rock the Baby and back. A 5-second Sleeper is barely enough to start a trick before it dies.</p></div>
+      <div class="idea-card"><div class="idea-card-label">Practise spin time drills</div><p>Set a timer. Throw a Sleeper. See how long you can sustain it without letting it return. Do 10 throws in a row and note your average. Track weekly improvement — the numbers will go up faster than you expect.</p></div>
+      <div class="idea-card"><div class="idea-card-label">Dead yo-yo drills</div><p>Practice tilt correction with a non-spinning yo-yo hanging on the string. You'll feel the nudge mechanics without time pressure. Transfer this muscle memory to live throws.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-check">?</div><div class="section-name">Checkpoint</div></div>
+    <div class="checkpoint">
+      <div class="checkpoint-header"><span class="checkpoint-badge">Module 02</span><span class="checkpoint-title">Tap to reveal answers</span></div>
+      <div class="questions-list">
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q1 — What are the three main causes of poor Sleeper quality?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Tilt (yo-yo leaning sideways), string tension (twisted string causing friction or slack), and weak throw power. Each requires a different fix — tilt is corrected by nudging; tension is fixed with the UFO; throw power is a drilling problem.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q2 — How do you fix a tilting yo-yo mid-Sleeper?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Move your throw hand slightly in the same direction as the tilt. The string will apply corrective pressure. Keep the movement small — overcorrection causes tilt in the opposite direction.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q3 — How do you check if string tension is neutral?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Let the yo-yo hang completely free at the end of the string. A neutral string causes the yo-yo to hang perfectly still. If it slowly rotates on its own, tension is off and needs correction before practising.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Practical check — Ready to move on?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">✅ Consistent Sleeper of 15+ seconds, 3 in a row<br>✅ Can nudge a tilting yo-yo back to vertical<br>✅ Know how to check and fix string tension with the UFO<br>✅ String is fresh (replaced recently)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── -->
+<!-- MODULE 3 — PICTURE TRICKS             -->
+<!-- ─────────────────────────────────────── -->
+<section class="module" id="mod3">
+  <div class="module-header">
+    <div class="module-number active-num">03</div>
+    <div class="module-title-block">
+      <div class="module-tag">Crowd Pleasers</div>
+      <div class="module-title">Picture Tricks</div>
+      <div class="module-subtitle">Rock the Baby and Eiffel Tower are Sport Ladder tricks #3 and #4. They're also the tricks that make people stop and watch. Learn both here.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-goal">◎</div><div class="section-name">Learning Goal</div></div>
+    <div class="goal-block">
+      <p>By the end of this module, you will be able to perform Rock the Baby and Eiffel Tower cleanly with a spinning yo-yo — and return cleanly from both. These are Sport Ladder positions 3 and 4, so landing them consistently puts you on the board at any competition.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-explain">≡</div><div class="section-name">Explain — The Theory</div></div>
+    <div class="explain-block">
+      <p><strong>Picture tricks</strong> are string formations — you manipulate the string into a recognisable shape while the yo-yo sleeps. Unlike mount tricks (where the yo-yo lands on the string), picture tricks are all about hand positioning. The critical insight: <strong>practise the shape with a dead yo-yo first</strong>. The string work is exactly the same whether the yo-yo is spinning or not. Build the hand memory without time pressure, then add the live spin.</p>
+      <p><strong>Rock the Baby</strong> forms a triangular "cradle" with the string, then swings the yo-yo through it like a baby in a hammock. The shape comes from pinching the string correctly with both hands.</p>
+      <p><strong>Eiffel Tower</strong> forms a symmetrical tower shape by threading the string through a loop you create. It's a three-step trick: slingshot position, thread the needle, twist and reveal.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — Rock the Baby</div></div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=wT_aEMVdvsk" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/wT_aEMVdvsk/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Rock the Baby Tutorial ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">Rock the Baby — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=wT_aEMVdvsk" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-steps">✓</div><div class="section-name">Step-by-Step — Rock the Baby</div></div>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">01</div><div class="step-content"><div class="step-title">Throw a strong Sleeper</div><div class="step-desc">You need at least 10 seconds of spin for this trick. If your Sleeper isn't reliable yet, go back to Module 02. The trick dies if the yo-yo stops spinning before you finish.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-content"><div class="step-title">Grab the string mid-way with your free hand</div><div class="step-desc">With your non-throwing hand, grab the string roughly in the middle — about halfway between your throw hand and the yo-yo. Pinch it between thumb and index finger.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-content"><div class="step-title">Pinch the string close to the yo-yo with your throw hand</div><div class="step-desc">Now pinch the string just 2–3 inches above the sleeping yo-yo with your throw hand fingers. This creates the top of the cradle.</div><div class="step-tip">→ The closer this pinch is to the yo-yo, the larger the cradle</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-content"><div class="step-title">Form the cradle — fingers forward and spread</div><div class="step-desc">Bring your throw hand forward and point your fingers down and outward. The string between both hands should form a wide triangle — this is the "baby's cradle." Spread your throw hand fingers to make it wider.</div></div></div>
+      <div class="step"><div class="step-num">05</div><div class="step-content"><div class="step-title">Rock gently 2–3 times, then release and return</div><div class="step-desc">Gently swing the sleeping yo-yo back and forth through the cradle 2–3 times. Then release all string from your non-throw hand and the yo-yo should automatically return from remaining spin energy.</div><div class="step-tip">→ If it doesn't return, the spin died — your Sleeper needs to be stronger</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — Eiffel Tower</div></div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=_SqNDPGkIBg" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/_SqNDPGkIBg/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Eiffel Tower Tutorial ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">Eiffel Tower — YoYoExpert</div>
+        <a href="https://www.youtube.com/watch?v=_SqNDPGkIBg" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-steps">✓</div><div class="section-name">Step-by-Step — Eiffel Tower</div></div>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">01</div><div class="step-content"><div class="step-title">Practise dead first — no spin</div><div class="step-desc">Let the yo-yo hang still. Work through all steps below with zero time pressure. You must be able to form the Eiffel Tower shape with a dead yo-yo before attempting it live. This is non-negotiable.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-content"><div class="step-title">Step 1 — The Slingshot</div><div class="step-desc">Extend your throw hand forward, thumb out. With your free hand, pinch your thumb and first two fingers together and pull the string through your throw hand — like a slingshot. Keep your throw hand thumb extended throughout.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-content"><div class="step-title">Step 2 — Thread the Needle</div><div class="step-desc">Bring your free hand down toward the yo-yo. This creates a small triangle in the string near your throw hand. Take your free hand index finger and pull the string coming off the yo-yo upward through that triangle.</div><div class="step-tip">→ Let the rest of the string fall off your free hand fingers once threaded</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-content"><div class="step-title">Step 3 — Twist and Reveal</div><div class="step-desc">Twist your throw hand forward and point your thumb toward yourself. Pinch the string coming off the yo-yo between your ring finger and middle finger. The Eiffel Tower shape appears. Adjust the string for symmetry if needed.</div></div></div>
+      <div class="step"><div class="step-num">05</div><div class="step-content"><div class="step-title">Release and return</div><div class="step-desc">Drop all the strings, give a light tug, and catch. If practising live, the whole trick needs to happen within 5–6 seconds of your Sleeper throw — move with deliberate speed once the yo-yo is sleeping.</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-ideas">⬡</div><div class="section-name">Ideas & Connections</div></div>
+    <div class="ideas-grid">
+      <div class="idea-card"><div class="idea-card-label">Sport Ladder positions 3 & 4</div><p>In competition, Eiffel Tower is trick #3 and Rock the Baby is trick #4 on the Sport Ladder. Landing both means you've passed the threshold from "can throw" to "can compete." That's a real milestone.</p></div>
+      <div class="idea-card"><div class="idea-card-label">Why dead practice is essential</div><p>Picture tricks have no physical "feel" of right vs wrong while the yo-yo is spinning — you can't tell by touch if your hands are positioned correctly. Dead practice builds the spatial memory of where each finger needs to go.</p></div>
+      <div class="idea-card"><div class="idea-card-label">The string triangle tells you everything</div><p>In both tricks, when you form the triangle with the string and it looks "off," it means a hand position is wrong. Don't proceed — reset the string and start from step 1. Rushing through a malformed triangle always results in a knot.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-check">?</div><div class="section-name">Checkpoint</div></div>
+    <div class="checkpoint">
+      <div class="checkpoint-header"><span class="checkpoint-badge">Module 03</span><span class="checkpoint-title">Tap to reveal answers</span></div>
+      <div class="questions-list">
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q1 — What is a "picture trick" and how does it differ from a mount trick?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">A picture trick forms a recognisable visual shape using the string while the yo-yo sleeps. Unlike mount tricks (where the yo-yo lands on and rolls along the string), picture tricks are entirely about hand positioning. The yo-yo simply hangs sleeping while you manipulate the string around it.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q2 — Why should you always practise picture tricks with a dead yo-yo first?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Picture tricks have multiple sequential hand positions that need to become automatic. With a dead yo-yo you have unlimited time to build this spatial memory. If you attempt it live before mastering the hand positions, spin time pressure causes rushed mistakes and the trick always ends in a knot.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q3 — What are the three steps of the Eiffel Tower?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Step 1: The Slingshot — pull the string through your throw hand with your free hand. Step 2: Thread the Needle — bring your free hand down to create a triangle, then thread the string from the yo-yo up through it. Step 3: Twist and Reveal — twist your throw hand forward, point thumb toward yourself, pinch the string between ring and middle finger.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Practical check — Ready to move on?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">✅ Rock the Baby formed cleanly with dead yo-yo, 5 times in a row<br>✅ Rock the Baby completed with live spinning yo-yo, returning cleanly<br>✅ Eiffel Tower formed cleanly with dead yo-yo, 5 times in a row<br>✅ Eiffel Tower attempted with live yo-yo at least 3 times</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── -->
+<!-- MODULE 4 — THE BIND                   -->
+<!-- ─────────────────────────────────────── -->
+<section class="module" id="mod4">
+  <div class="module-header">
+    <div class="module-number active-num">04</div>
+    <div class="module-title-block">
+      <div class="module-tag">Skill Unlock</div>
+      <div class="module-title">The Bind</div>
+      <div class="module-subtitle">The Bind is the gateway to competition-level play. Master this and you unlock unresponsive yo-yos — longer spin times and the full Sport Ladder.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-goal">◎</div><div class="section-name">Learning Goal</div></div>
+    <div class="goal-block">
+      <p>By the end of this module, you will be able to perform a reliable frontstyle Bind on an unresponsive yo-yo. This is the single most important technical gateway in all of 1A yo-yo — it separates beginner play from competition play.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-explain">≡</div><div class="section-name">Explain — The Theory</div></div>
+    <div class="explain-block">
+      <p>An unresponsive yo-yo will not return to your hand with a simple tug — the bearing is too wide for the string to catch. The <strong>Bind</strong> solves this by manually feeding extra string into the yo-yo gap, creating enough friction for the yo-yo to wind up and return. It sounds complex but the physical motion is quick once learned.</p>
+      <p>Why bother? Because unresponsive yo-yos spin dramatically longer than responsive ones — 30, 60, even 90+ seconds in competition. This extra spin time is what allows the complex string tricks on the Sport Ladder that simply cannot be done on a short-spinning responsive yo-yo.</p>
+      <p>There are two primary Binds: <strong>Frontstyle</strong> (from a Sleeper position) and <strong>Sidestyle</strong> (from a Breakaway/Trapeze position). Start with Frontstyle as it's more intuitive.</p>
+      <div class="info-grid">
+        <div class="info-cell"><div class="info-cell-label">When to switch yo-yos</div><div class="info-cell-value">Once Bind is reliable<br>Swap to wider bearing</div></div>
+        <div class="info-cell"><div class="info-cell-label">Good starter unresponsive</div><div class="info-cell-value">YoYoFactory Arrow (wide bearing)<br>YoYoFactory ONE Unresponsive Kit</div></div>
+        <div class="info-cell"><div class="info-cell-label">Most common mistake</div><div class="info-cell-value">Not feeding enough string<br>Loop too small to catch</div></div>
+        <div class="info-cell"><div class="info-cell-label">Sign of a good Bind</div><div class="info-cell-value">Yo-yo shoots back up firmly<br>No slippage or loose winding</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — The Bind</div></div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=pcSq5HWcI50" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/pcSq5HWcI50/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: How to Bind an Unresponsive Yo-Yo ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">How to Bind — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=pcSq5HWcI50" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-steps">✓</div><div class="section-name">Step-by-Step — Frontstyle Bind</div></div>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">01</div><div class="step-content"><div class="step-title">Throw a Sleeper on your unresponsive yo-yo</div><div class="step-desc">Switch to the wider bearing if you have the YoYoFactory Arrow. Throw a strong Sleeper. Notice that a tug does nothing — the yo-yo stays sleeping. This is the unresponsive state you're learning to work with.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-content"><div class="step-title">Push your free hand index finger into the string</div><div class="step-desc">With your free hand index finger, push forward into the string midway between your throw hand and the yo-yo. This creates a loop of string that will feed into the yo-yo gap.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-content"><div class="step-title">Hook the string underneath the yo-yo</div><div class="step-desc">Move your throw hand to come around the front of the yo-yo so the yo-yo is now sitting on top of the string. The yo-yo needs to be in the opposite spin direction relative to the string for the Bind to catch.</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-content"><div class="step-title">Pinch the string on top — feel the tug</div><div class="step-desc">Pinch the string just above the yo-yo with your throw hand fingers. You're about to feed this into the gap. You should feel a light resistance as the string begins winding.</div><div class="step-tip">→ If you feel nothing, your loop isn't making contact with the yo-yo gap — adjust</div></div></div>
+      <div class="step"><div class="step-num">05</div><div class="step-content"><div class="step-title">Lift throw hand, release free hand — catch</div><div class="step-desc">As soon as you feel the tug, pull your throw hand upward while simultaneously releasing the string from your free hand. The yo-yo should shoot back to your hand. Catch with a cupped palm.</div><div class="step-tip">→ Timing: lift and release at the exact same moment</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-ideas">⬡</div><div class="section-name">Ideas & Connections</div></div>
+    <div class="ideas-grid">
+      <div class="idea-card"><div class="idea-card-label">Why the direction matters</div><p>The Bind only works when the string loop enters the gap in the opposite direction to the yo-yo's spin. If it's not catching, flip which direction you're feeding the string from. This is the most common reason Binds fail.</p></div>
+      <div class="idea-card"><div class="idea-card-label">The "snag" vs the clean Bind</div><p>A snag happens when the yo-yo winds too tightly or a knot forms, causing it to snap back violently during a trick. As you learn to Bind, some snags are normal. They decrease as your technique improves.</p></div>
+      <div class="idea-card"><div class="idea-card-label">The milestone this unlocks</div><p>Once you can Bind reliably, you can practise Trapeze, Double or Nothing, and Split the Atom — the core of the Sport Ladder. Those tricks are essentially impossible on a responsive yo-yo without the Bind.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-check">?</div><div class="section-name">Checkpoint</div></div>
+    <div class="checkpoint">
+      <div class="checkpoint-header"><span class="checkpoint-badge">Module 04</span><span class="checkpoint-title">Tap to reveal answers</span></div>
+      <div class="questions-list">
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q1 — Why can't you tug an unresponsive yo-yo back?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Unresponsive yo-yos have a wider bearing gap. A simple tug on the string creates insufficient friction against the axle for the yo-yo to grab and wind up. The Bind manually forces extra string into the gap, creating the friction needed to return.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q2 — What is the most common reason a Bind doesn't catch?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">The string loop is entering the gap in the same direction as the yo-yo's spin instead of the opposite direction. The loop needs to enter against the spin direction to create winding friction. Reverse which side you're feeding the string from to fix this.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q3 — Why switch to an unresponsive yo-yo at this stage?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Unresponsive yo-yos spin far longer than responsive ones, providing the spin budget needed for Sport Ladder tricks like Trapeze, Split the Atom, and Double or Nothing. These tricks require 20–40+ seconds of spin time that responsive yo-yos can't provide consistently.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Practical check — Ready for Module 5?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">✅ Frontstyle Bind working reliably, 5 in a row without knots<br>✅ Using unresponsive yo-yo (wide bearing)<br>✅ Sleeper still consistent at 15+ seconds on unresponsive<br>✅ Comfortable with the feel of unresponsive play (no accidental snap-backs)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── -->
+<!-- MODULE 5 — SPORT LADDER TRICKS        -->
+<!-- ─────────────────────────────────────── -->
+<section class="module" id="mod5">
+  <div class="module-header">
+    <div class="module-number active-num">05</div>
+    <div class="module-title-block">
+      <div class="module-tag">Competition Skills</div>
+      <div class="module-title">Sport Ladder Tricks</div>
+      <div class="module-subtitle">The official Sport Ladder runs from Sleeper to Black Hops. Your target: consistently land tricks 1–8. That puts you solidly on the board at any beginner competition.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-goal">◎</div><div class="section-name">Learning Goal</div></div>
+    <div class="goal-block">
+      <p>By the end of this module, you will be able to perform Sport Ladder tricks 1 through 8 in sequence: Sleeper, Side Throw, Eiffel Tower, Rock the Baby, Elevator, Brain Twister, Trapeze, and Split the Atom. Completing trick 8 at competition puts you in the top tier of beginner entrants.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-explain">≡</div><div class="section-name">The Full Sport Ladder — Your Roadmap</div></div>
+    <div class="explain-block">
+      <p>The Sport Ladder is performed sequentially in competition. You get one attempt per trick, with one "miss pass" — on your second missed trick, you are retired from the Ladder. The official trick order starting from the bottom is below. Your goal is to reach trick 8 consistently.</p>
+      <div class="info-grid">
+        <div class="info-cell"><div class="info-cell-label">#1 Sleeper</div><div class="info-cell-value">Already learned — Module 01<br>Must spin 3+ seconds</div></div>
+        <div class="info-cell"><div class="info-cell-label">#2 Side Throw (Breakaway)</div><div class="info-cell-value">Already learned — Module 01<br>Swing across body, return</div></div>
+        <div class="info-cell"><div class="info-cell-label">#3 Eiffel Tower</div><div class="info-cell-value">Already learned — Module 03<br>Slingshot → thread → twist</div></div>
+        <div class="info-cell"><div class="info-cell-label">#4 Rock the Baby</div><div class="info-cell-value">Already learned — Module 03<br>Cradle, 2–3 rocks, release</div></div>
+        <div class="info-cell"><div class="info-cell-label">#5 Elevator</div><div class="info-cell-value">New — see steps below<br>String ride up to hand</div></div>
+        <div class="info-cell"><div class="info-cell-label">#6 Brain Twister</div><div class="info-cell-value">New — see steps below<br>Front mount + somersault</div></div>
+        <div class="info-cell"><div class="info-cell-label">#7 Trapeze</div><div class="info-cell-value">New — see steps below<br>Breakaway onto index finger</div></div>
+        <div class="info-cell"><div class="info-cell-label">#8 Split the Atom</div><div class="info-cell-value">New — see steps below<br>Split bottom mount + unders</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — Trapeze (Trick #7)</div></div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=W0BGSzTuqTc" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/W0BGSzTuqTc/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Trapeze Tutorial ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">Trapeze — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=W0BGSzTuqTc" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-steps">✓</div><div class="section-name">New Tricks — Steps for #5 through #8</div></div>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">#5</div><div class="step-content"><div class="step-title">Elevator</div><div class="step-desc">Throw a Sleeper. Take the string off your throw hand finger and pinch it with your thumb and index finger. Return the yo-yo but as it rises, let go of the pinch — the yo-yo will shoot upward, releasing into the air. Catch it. This trick demonstrates string tension control and clean Sleeper technique.</div><div class="step-tip">→ The yo-yo needs strong spin to have enough momentum to complete the upward ride</div></div></div>
+      <div class="step"><div class="step-num">#6</div><div class="step-content"><div class="step-title">Brain Twister</div><div class="step-desc">Throw a Sleeper. Place your free hand index finger on the string and push it forward into a "front mount" — the yo-yo is now resting on a loop of string between your two index fingers. Now bring your throw hand index finger up around the yo-yo, pushing the string segments to rotate the yo-yo around your free hand finger (one complete somersault). Dismount and return.</div><div class="step-tip">→ This is the first "mount" trick — the yo-yo rides on the string itself</div></div></div>
+      <div class="step"><div class="step-num">#7</div><div class="step-content"><div class="step-title">Trapeze</div><div class="step-desc">Throw a strong Breakaway. As the yo-yo swings across your body, extend your free hand index finger into the path of the string. The yo-yo should swing over your finger and land sleeping on the string on the far side. Hold the position for a moment, then dismount back and Bind to return. This is the foundation of all advanced 1A play.</div><div class="step-tip">→ The yo-yo "lands" on the string — aim for the thick part of the string, not the edge</div></div></div>
+      <div class="step"><div class="step-num">#8</div><div class="step-content"><div class="step-title">Split the Atom</div><div class="step-desc">Start from a Split Bottom Mount (a Sleeper-based mount using both index fingers to split the string). Then perform a pass under the yo-yo with your free hand index finger, push forward into the double string segments, followed by a pass under with your throw hand index finger. Complete 3 somersaults. Dismount and Bind. This is where serious competition play begins.</div><div class="step-tip">→ Watch the YoYoTricks.com tutorial for Split Bottom Mount before attempting this</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-ideas">⬡</div><div class="section-name">Ideas & Connections</div></div>
+    <div class="ideas-grid">
+      <div class="idea-card"><div class="idea-card-label">The Trapeze changes everything</div><p>The Trapeze is to 1A yo-yo what open chords are to guitar — once you have it, dozens of other tricks become accessible immediately. Every trick above #7 on the Ladder begins from or passes through a Trapeze position.</p></div>
+      <div class="idea-card"><div class="idea-card-label">Practise the sequence, not just tricks</div><p>In competition you perform tricks back to back with no rest. Start practising runs of 1→2→3→4 in sequence, then extend to 1→8. The mental flow of the sequence is a separate skill from executing individual tricks.</p></div>
+      <div class="idea-card"><div class="idea-card-label">One miss is allowed</div><p>Competition rules give you one missed trick before you're retired. Strategically, this means: if you miss #5 (Elevator), immediately attempt #6 (Brain Twister) and don't panic. Panic causes the second miss.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-check">?</div><div class="section-name">Checkpoint</div></div>
+    <div class="checkpoint">
+      <div class="checkpoint-header"><span class="checkpoint-badge">Module 05</span><span class="checkpoint-title">Tap to reveal answers</span></div>
+      <div class="questions-list">
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q1 — What is the Sport Ladder rule for missed tricks?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">You get one attempt per trick. You are allowed one missed trick — you advance to the next regardless. On your second missed trick, you are retired from the Ladder. The winner is the player who completes the highest trick. Tiebreakers go to the highest trick missed.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Q2 — What is the Trapeze and why is it important?</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">The Trapeze is trick #7 on the Sport Ladder: throw a Breakaway and catch the sleeping yo-yo on your free hand index finger via the string. It's critically important because virtually every trick above it on the Ladder starts from, passes through, or returns to a Trapeze position.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Practical Ladder Run — Track yourself</span><span class="q-toggle">Reveal ↓</span></div><div class="question-a">Run the Ladder sequence from 1 to 8. Note where you stop:<br><br>✅ #1 Sleeper — landed<br>✅ #2 Side Throw — landed<br>✅ #3 Eiffel Tower — landed<br>✅ #4 Rock the Baby — landed<br>⬜ #5 Elevator — practising<br>⬜ #6 Brain Twister — practising<br>⬜ #7 Trapeze — practising<br>⬜ #8 Split the Atom — practising<br><br>Aim to tick all 8 before Module 6.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── -->
+<!-- MODULE 6 — COMPETITION PREP           -->
+<!-- ─────────────────────────────────────── -->
+<section class="module" id="mod6">
+  <div class="module-header">
+    <div class="module-number active-num">06</div>
+    <div class="module-title-block">
+      <div class="module-tag">Final Stage</div>
+      <div class="module-title">Competition Prep</div>
+      <div class="module-subtitle">Knowing tricks and performing them under competition pressure are different skills. This module bridges that gap — so you walk in ready, not just prepared.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-goal">◎</div><div class="section-name">Learning Goal</div></div>
+    <div class="goal-block">
+      <p>By the end of this module, you will have run the full Sport Ladder sequence under timed conditions, know what to expect on competition day, and have a pre-competition routine that manages nerves and sets up your best performance.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-explain">≡</div><div class="section-name">Explain — Competition Day Reality</div></div>
+    <div class="explain-block">
+      <p>The Sport Ladder at competition is performed in front of judges and an audience. Awards are given to the top performer in each age group (12 and under, 13–17, and 18+), as well as an overall winner for the Ladder. The pressure of being watched changes everything — tricks you can land 9/10 times in your living room suddenly feel uncertain. This is normal and expected.</p>
+      <p>The antidote is <strong>overlearning</strong>: practising each trick to the point where it requires no conscious thought. If you're thinking about the steps during a trick, you haven't practised it enough. The goal is automatic execution — your hands know what to do before your brain finishes processing the request.</p>
+      <p>Equally important is your <strong>pre-competition setup</strong>: fresh string, correct tension, working yo-yo, and a consistent warm-up routine. Gear failures at competition are almost always preventable.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-steps">✓</div><div class="section-name">Competition Day Checklist</div></div>
+    <div class="gear-list" id="compList">
+      <div class="gear-item"><div class="gear-status" onclick="toggleGear(this)"></div><div class="gear-info"><div class="gear-name">Fresh string installed the morning of competition</div><div class="gear-desc">Old string loses tension responsiveness and snap. Install new polyester string the morning of the event — not the night before.</div></div></div>
+      <div class="gear-item"><div class="gear-status" onclick="toggleGear(this)"></div><div class="gear-info"><div class="gear-name">String tension checked and neutralised</div><div class="gear-desc">Run 5–10 UFO corrections before your first practice throw. Neutral tension is non-negotiable for clean trick execution.</div></div></div>
+      <div class="gear-item"><div class="gear-status" onclick="toggleGear(this)"></div><div class="gear-info"><div class="gear-name">Backup yo-yo and 3+ spare strings in bag</div><div class="gear-desc">Strings break. Bearings seize. Carry a fully set-up backup and never leave home without it.</div></div></div>
+      <div class="gear-item"><div class="gear-status" onclick="toggleGear(this)"></div><div class="gear-info"><div class="gear-name">15-minute warm-up done before entering the competition area</div><div class="gear-desc">Run tricks 1–8 in sequence at least twice in warm-up. Your hands need to be moving before you compete — never go in cold.</div></div></div>
+      <div class="gear-item"><div class="gear-status" onclick="toggleGear(this)"></div><div class="gear-info"><div class="gear-name">Know the competition rules and trick order</div><div class="gear-desc">Confirm the trick list used at your specific competition — minor regional variations exist. Arrive early enough to watch others compete before your turn.</div></div></div>
+      <div class="gear-item"><div class="gear-status" onclick="toggleGear(this)"></div><div class="gear-info"><div class="gear-name">Mental reset plan for a missed trick</div><div class="gear-desc">Decide in advance: if you miss a trick, take one breath, shake it off, and move to the next. You have one miss to spend — don't let the miss cause the retirement.</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Reference — Full Sport Ladder Demo</div></div>
+    <div class="video-block">
+      <a href="https://www.youtube.com/watch?v=n1KWWQOqaCI" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/n1KWWQOqaCI/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Full Sport Trick Ladder Demo ↗</div>
+        </div>
+      </a>
+      <div class="video-meta">
+        <div class="video-title">Full Sport Ladder Run — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=n1KWWQOqaCI" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-ideas">⬡</div><div class="section-name">Ideas & Connections</div></div>
+    <div class="ideas-grid">
+      <div class="idea-card"><div class="idea-card-label">Overlearning is the goal</div><p>In performance psychology, "overlearning" means practising past the point of competency to the point of automaticity. For Sport Ladder, aim to land each trick 9/10 times in practice before competition — so that nerves still leave you at 7/10 on the day.</p></div>
+      <div class="idea-card"><div class="idea-card-label">Watching others is learning</div><p>Arrive early and watch the other Ladder competitors. You'll see where tricks are commonly missed, how judges evaluate each trick, and whether the specific competition has any format quirks. This is free intelligence.</p></div>
+      <div class="idea-card"><div class="idea-card-label">The goal beyond this course</div><p>Once you've competed in the Sport Ladder, the natural next step is entering a Freestyle division — a 2-minute routine set to music using tricks of your own choosing. The Ladder gives you the foundation; Freestyle is where personal style develops.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><div class="section-icon icon-check">?</div><div class="section-name">Final Self-Assessment</div></div>
+    <div class="checkpoint">
+      <div class="checkpoint-header"><span class="checkpoint-badge">Module 06 · Final</span><span class="checkpoint-title">Your competition readiness check</span></div>
+      <div class="questions-list">
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Full Ladder Run — land tricks 1–8 in sequence, timed</span><span class="q-toggle">Check ↓</span></div><div class="question-a">Set a timer. Run the Sport Ladder from trick 1 to trick 8 in one continuous sequence with no restarts between tricks. If you can land 6 out of 8 tricks consistently in this timed run, you are competition-ready. 8/8 means you're competing to win.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>Stress inoculation — perform in front of someone</span><span class="q-toggle">Check ↓</span></div><div class="question-a">Perform your Ladder run in front of at least one other person before your first competition. Phone front camera works. The presence of an audience — even a single person — triggers the same nerves as competition. Do this at least 3 times before the event.</div></div>
+        <div class="question-item"><div class="question-q" onclick="toggleQ(this)"><span>You're ready. What comes next?</span><span class="q-toggle">Show ↓</span></div><div class="question-a">
+          🏆 You've completed the course. Here's what's next:<br><br>
+          <strong>Find competitions:</strong> yoyocontest.com lists regional events. Australian events: the Australian National Yo-Yo Championships run annually.<br><br>
+          <strong>Continue learning:</strong> YoYoTricks.com and YoYoExpert have full trick progression from Ladder onwards. The natural next tricks are Double or Nothing, Mach 5, and Cold Fusion — tricks 9–11 on the Ladder.<br><br>
+          <strong>Community:</strong> r/Throwers on Reddit and the YoYoExpert forums are active, welcoming communities with free trick feedback.<br><br>
+          You started this course knowing basic throws. You're finishing it with 8 competition tricks, an understanding of responsive and unresponsive play, and a real competition framework. That's the full beginner-to-competitor journey. Go throw.
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-text">Course built with Claude · Free to use & share · github.com</div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+    <span class="coming-soon">All 7 modules complete 🪀</span>
+  </div>
+</footer>
+
+<script>
+  function toggleQ(el) {
+    const answer = el.nextElementSibling;
+    const toggle = el.querySelector('.q-toggle');
+    if (answer.classList.contains('revealed')) {
+      answer.classList.remove('revealed');
+      toggle.textContent = 'Reveal ↓';
+    } else {
+      answer.classList.add('revealed');
+      toggle.textContent = 'Hide ↑';
+    }
+  }
+
+  function toggleGear(el) {
+    el.classList.toggle('checked');
+  }
+
+  // Smooth scroll for nav
+  document.querySelectorAll('.toc-item[href]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.toc-item').forEach(i => i.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // Progress fill animation on load
+  setTimeout(() => {
+    document.querySelector('.progress-fill').style.width = '100%';
+  }, 300);
+</script>
+</body>
+</html>
