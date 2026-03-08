@@ -362,6 +362,63 @@
     border: none;
   }
 
+  .video-link-block {
+    display: block;
+    text-decoration: none;
+  }
+
+  .video-thumb-img {
+    position: relative;
+    padding-top: 56.25%;
+    background-size: cover;
+    background-position: center;
+    background-color: #111;
+    overflow: hidden;
+    transition: filter 0.2s;
+  }
+
+  .video-link-block:hover .video-thumb-img {
+    filter: brightness(1.15);
+  }
+
+  .video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    transition: transform 0.2s;
+  }
+
+  .video-link-block:hover .video-play-btn {
+    transform: translate(-50%, -60%) scale(1.1);
+  }
+
+  .video-open-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+
+  .video-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .video-source:hover { text-decoration: underline; }
+
   .video-meta {
     padding: 1rem 1.2rem;
     display: flex;
@@ -951,13 +1008,22 @@
       <div class="section-name">Video Demo — The Sleeper</div>
     </div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/bFiQ3wuiIsU" allowfullscreen title="Basic Throw and Sleeper Tutorial"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=bFiQ3wuiIsU" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/bFiQ3wuiIsU/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Basic Throw & Sleeper Tutorial ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
         <div class="video-title">Basic Throw & Sleeper — YoYoTricks.com</div>
-        <div class="video-source">yoyotricks.com</div>
+        <a href="https://www.youtube.com/watch?v=bFiQ3wuiIsU" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1018,13 +1084,22 @@
       <div class="section-name">Video Demo — The Breakaway</div>
     </div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/bxsKbULJeA0" allowfullscreen title="Breakaway Tutorial"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=bxsKbULJeA0" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/bxsKbULJeA0/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: The Breakaway Tutorial ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
-        <div class="video-title">The Breakaway — Foundation of 1A Tricks</div>
-        <div class="video-source">skilladdicts.com</div>
+        <div class="video-title">The Breakaway — SkillAddicts.com</div>
+        <a href="https://www.youtube.com/watch?v=bxsKbULJeA0" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1179,13 +1254,22 @@
   <div class="section">
     <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — String Tension & UFO</div></div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/0-W1gH-XYUI" allowfullscreen title="String Tension Tutorial"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=0-W1gH-XYUI" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/0-W1gH-XYUI/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: String Tension Introduction ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
-        <div class="video-title">String Tension Introduction — YoYoTricks.com</div>
-        <div class="video-source">yoyotricks.com</div>
+        <div class="video-title">String Tension & UFO — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=0-W1gH-XYUI" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1254,13 +1338,22 @@
   <div class="section">
     <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — Rock the Baby</div></div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/wT_aEMVdvsk" allowfullscreen title="Rock the Baby Tutorial"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=wT_aEMVdvsk" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/wT_aEMVdvsk/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Rock the Baby Tutorial ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
         <div class="video-title">Rock the Baby — YoYoTricks.com</div>
-        <div class="video-source">yoyotricks.com</div>
+        <a href="https://www.youtube.com/watch?v=wT_aEMVdvsk" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1278,13 +1371,22 @@
   <div class="section">
     <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — Eiffel Tower</div></div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/_SqNDPGkIBg" allowfullscreen title="Eiffel Tower Tutorial"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=_SqNDPGkIBg" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/_SqNDPGkIBg/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Eiffel Tower Tutorial ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
         <div class="video-title">Eiffel Tower — YoYoExpert</div>
-        <div class="video-source">yoyoexpert.com</div>
+        <a href="https://www.youtube.com/watch?v=_SqNDPGkIBg" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1360,13 +1462,22 @@
   <div class="section">
     <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — The Bind</div></div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/pcSq5HWcI50" allowfullscreen title="How to Bind Unresponsive Yoyo"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=pcSq5HWcI50" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/pcSq5HWcI50/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: How to Bind an Unresponsive Yo-Yo ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
-        <div class="video-title">How to Bind an Unresponsive Yo-Yo — YoYoTricks.com</div>
-        <div class="video-source">yoyotricks.com</div>
+        <div class="video-title">How to Bind — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=pcSq5HWcI50" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1444,13 +1555,22 @@
   <div class="section">
     <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Video Demo — Trapeze (Trick #7)</div></div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/W0BGSzTuqTc" allowfullscreen title="Trapeze Tutorial"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=W0BGSzTuqTc" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/W0BGSzTuqTc/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Trapeze Tutorial ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
-        <div class="video-title">Trapeze — The Gateway to All 1A String Tricks</div>
-        <div class="video-source">yoyotricks.com</div>
+        <div class="video-title">Trapeze — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=W0BGSzTuqTc" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1530,13 +1650,22 @@
   <div class="section">
     <div class="section-label"><div class="section-icon icon-video">▶</div><div class="section-name">Reference — Full Sport Ladder Demo</div></div>
     <div class="video-block">
-      <div class="video-thumb">
-        <iframe src="https://www.youtube.com/embed/n1KWWQOqaCI" allowfullscreen title="Full Sport Ladder Run"></iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=n1KWWQOqaCI" target="_blank" rel="noopener" class="video-link-block">
+        <div class="video-thumb-img" style="background-image:url('https://img.youtube.com/vi/n1KWWQOqaCI/hqdefault.jpg')">
+          <div class="video-play-btn">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="26" fill="rgba(0,0,0,0.7)"/>
+              <polygon points="21,17 39,26 21,35" fill="#f5c842"/>
+            </svg>
+          </div>
+          <div class="video-open-label">Watch: Full Sport Trick Ladder Demo ↗</div>
+        </div>
+      </a>
       <div class="video-meta">
-        <div class="video-title">Full Sport Trick Ladder — YoYoTricks.com</div>
-        <div class="video-source">yoyotricks.com</div>
+        <div class="video-title">Full Sport Ladder Run — YoYoTricks.com</div>
+        <a href="https://www.youtube.com/watch?v=n1KWWQOqaCI" target="_blank" rel="noopener" class="video-source">Open on YouTube ↗</a>
       </div>
+    </div>
     </div>
   </div>
 
